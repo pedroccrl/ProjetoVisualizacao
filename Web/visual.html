@@ -7,6 +7,9 @@
     <script src="Scripts/jquery-1.9.1.js"></script>
 </head>
 <body>
+    <div id="progresso">
+        
+    </div>
     <div id="content">
         <p>Carregando...</p>
     </div>
@@ -17,6 +20,6 @@
     function teste() {
         content.innerHTML += "lalala";
     }
-    //window.setInterval(teste, 100);
+    window.setInterval(progresso, 10);
     loadDataInDiv("content");
 </script>
