@@ -1,0 +1,18 @@
+http://www.patrick-wied.at/static/heatmapjs/
+
+dados socieconomicos de chicago
+http://www.opendatanetwork.com/dataset/data.cityofchicago.org/jcxq-k9xf?
+
+the percent of occupied housing units with more than one person per room (i.e., crowded housing)
+porcentagem de familias que vivem abaixo do nivel de probreza federal
+porcentagem de pessoas na força de trabalho sobre a idade de 16 anos que estão desempregados
+porcentagem de pessoas com mais de 25 anos sem um diploma do ensino medio
+porcentagem da população de menores de 18 anos ou mais de 64 anos de idade (dependencia)
+renda per capita
+
+https://data.cityofchicago.org/resource/jcxq-k9xf.json?$select=*
+
+hurl.it (http request online)
+
+API GOOGLE MAPS
+https://developers.google.com/maps/documentation/javascript/overlays?hl=pt-BR#overlay_types

@@ -1,8 +1,15 @@
 ﻿var dados;
+var totalBytes;
+var bytes;
+
+function progresso(evt) {
+    document.getElementById("content").innerHTML = evt.loaded;
+}
 
 function loadData()
 {
     var xhttp = new XMLHttpRequest();
+    xhttp.onprogress = progresso;
     xhttp.onreadystatechange = function ()
     {
         if (xhttp.readyState == 4 && xhttp.status == 200)
@@ -19,4 +26,6 @@ function loadData()
     };
     xhttp.open("GET", "https://data.cityofchicago.org/resource/jcxq-k9xf.json?$select=*", true);
     xhttp.send();
+    totalBytes = xhttp.getResponseHeader("Content-Length");
+    document.getElementById("content").innerHTML = totalBytes;
 }
