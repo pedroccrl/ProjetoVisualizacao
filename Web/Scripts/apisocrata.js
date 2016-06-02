@@ -8,7 +8,16 @@ function GeocodeBairro(nome, lat, lng) {
     this.lng = lng;
 }
 
-
+function readKml(fileName) {
+    var http = new XMLHttpRequest();
+    http.onreadystatechange = function(){
+        if (http.readyState == 4 && http.status == 200) {
+            var parser = new DOMParser();
+            var xmlDoc = parser.parseFromString(http.responseText, "text/xml");
+            console.log(xmlDoc);
+        }
+    }
+}
 
 function obterLatLonChicago(bairro, dados, i, divId) {
     var result;
