@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Visualização de dados Socrata - Gráficos</title>
+	<meta charset="utf-8" />
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+    <script src="http://cdn.oesmith.co.uk/morris-0.4.1.min.js"></script>
+    <script src="Scripts/soda-js.bundle.js"></script>
+</head>
+<body>
+    <div id="grafico">
+        <!-- Gráfico aparece aqui -->
+    </div>
+    <script>
+        var consumer = new soda.Consumer('data.cityofchicago.org'); // endereço da organização em que deseja acessar os dados
+        consumer
+            .query()
+            .withDataset('jcxq-k9xf') // dados da organização
+            .limit(20) // quantidade de linhas para recuperar
+            .getRows()
+            .on('success', function (rows) { // função é chamada quando retorna os dados com sucesso
+                var dados = [];
+                for (var i = 0; i < rows.length; i++) {
+                    var area = rows[i];
+                    dados[i] = { nome: area.community_area_name, renda: area.per_capita_income_ };
+                }
+                Morris.Bar({
+                    element: 'grafico', // div em que aparecerá o gráfico
+                    data: dados, // dados do grafico
+                    xkey: 'nome', // linha horizontal
+                    ykeys: ['renda'], // dados da linha vertical
+                    labels: ['Renda Per Capita'] // descrição dos dados
+                });
+            });
+    </script>
+</body>
+</html>
