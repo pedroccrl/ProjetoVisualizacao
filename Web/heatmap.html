@@ -1,0 +1,198 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Heatmaps</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            height: 100%;
+            width: 70%;
+        }
+
+        #floating-panel {
+            position: absolute;
+            top: 10px;
+            left: 25%;
+            z-index: 5;
+            background-color: #fff;
+            padding: 5px;
+            border: 1px solid #999;
+            text-align: center;
+            font-family: 'Roboto','sans-serif';
+            line-height: 30px;
+            padding-left: 10px;
+        }
+
+        #floating-panel {
+            background-color: #fff;
+            border: 1px solid #999;
+            left: 25%;
+            padding: 5px;
+            position: absolute;
+            top: 10px;
+            z-index: 5;
+        }
+
+        #info {
+            height: 100%;
+            top: 10px;
+            left: 71%;
+            position: absolute;
+            z-index: 5;
+        }
+        
+        #info-content {
+            left: 25%;
+        }
+
+    </style>
+    <script src="Scripts/soda-js.bundle.js"></script>
+</head>
+
+<body>
+    <div id="floating-panel">
+        <button onclick="toggleHeatmap()">Toggle Heatmap</button>
+        <button onclick="changeGradient()">Change gradient</button>
+        <button onclick="changeRadius()">Change radius</button>
+        <button onclick="changeOpacity()">Change opacity</button>
+    </div>
+    <div id="info">
+        <h3>Visualização dos Crimes da Cidade de Chicago</h3>
+        <div id="info-content">
+            Carregando...<br />
+            <img src="http://www.voguerestaurant.com/images/Load.gif" width="64" height="64"/>
+        </div>
+    </div>
+    <div id="map"></div>
+    
+    <script>
+
+        var map, heatmap;
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 10,
+                center: { lat: 41.885, lng: -87.663 },
+                mapTypeId: google.maps.MapTypeId.SATELLITE
+            });
+
+            
+
+        }
+        function crimesChicago() {
+            var consumidor = new soda.Consumer('data.nlc.org');
+            consumidor
+                .query()
+                .withDataset('8nqd-3pu9')
+                .getRows()
+                .on('success', function (rows) {
+                    var div = document.getElementById('info-content');
+                    var pontos = [];
+                    for (var i = 0; i < rows.length; i++) {
+                        var crime = rows[i];
+                        if (typeof crime.location_1 !== "undefined") {
+                            var lat = crime.location_1.coordinates[1];
+                            var lng = crime.location_1.coordinates[0];
+                            pontos.push(new google.maps.LatLng(lat, lng));
+                        }
+
+                        
+                    }
+
+                    // Load GeoJSON.
+                    map.data.loadGeoJson('https://data.cityofchicago.org/api/geospatial/cauq-8yn6?method=export&format=GeoJSON');
+
+                    // [START snippet]
+                    // Color each letter gray. Change the color when the isColorful property
+                    // is set to true.
+                    map.data.setStyle(function (feature) {
+                        var color = 'gray';
+                        if (feature.getProperty('isColorful')) {
+                            color = feature.getProperty('color');
+                        }
+                        return /** @type {google.maps.Data.StyleOptions} */({
+                            //fillColor: color,
+                            strokeColor: color,
+                            strokeWeight: 1
+                        });
+                    });
+
+                    // When the user clicks, set 'isColorful', changing the color of the letters.
+                    map.data.addListener('click', function (event) {
+                        event.feature.setProperty('isColorful', true);
+                    });
+
+                    // When the user hovers, tempt them to click by outlining the letters.
+                    // Call revertStyle() to remove all overrides. This will use the style rules
+                    // defined in the function passed to setStyle()
+                    map.data.addListener('mouseover', function (event) {
+                        
+                        map.data.revertStyle();
+                        map.data.overrideStyle(event.feature, { strokeWeight: 4 });
+                    });
+
+                    map.data.addListener('mouseout', function (event) {
+                        map.data.revertStyle();
+                    });
+
+                    heatmap = new google.maps.visualization.HeatmapLayer({
+                        data: pontos,
+                        map: map
+                    });
+
+                    div.innerHTML = rows.length + " Crimes encontrados";
+                });
+        }
+        crimesChicago();
+        
+
+        function toggleHeatmap() {
+          heatmap.setMap(heatmap.getMap() ? null : map);
+        }
+
+        function changeGradient() {
+          var gradient = [
+            'rgba(0, 255, 255, 0)',
+            'rgba(0, 255, 255, 1)',
+            'rgba(0, 191, 255, 1)',
+            'rgba(0, 127, 255, 1)',
+            'rgba(0, 63, 255, 1)',
+            'rgba(0, 0, 255, 1)',
+            'rgba(0, 0, 223, 1)',
+            'rgba(0, 0, 191, 1)',
+            'rgba(0, 0, 159, 1)',
+            'rgba(0, 0, 127, 1)',
+            'rgba(63, 0, 91, 1)',
+            'rgba(127, 0, 63, 1)',
+            'rgba(191, 0, 31, 1)',
+            'rgba(255, 0, 0, 1)'
+          ]
+          heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
+        }
+
+        function changeRadius() {
+          heatmap.set('radius', heatmap.get('radius') ? null : 20);
+        }
+
+        function changeOpacity() {
+          heatmap.set('opacity', heatmap.get('opacity') ? null : 0.2);
+        }
+
+        // Heatmap data: 500 Points
+        function getPoints() {
+            return [
+                new google.maps.LatLng(41.885, -87.663),
+            ];
+        }
+
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9UfBAMHF2QhemIgsbX52OtYs8yslpsZ8&signed_in=true&libraries=visualization&callback=initMap">
+    </script>
+</body>
+</html>

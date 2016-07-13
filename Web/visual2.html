@@ -54,11 +54,17 @@
                     var coord = coords[i];
                     //div.innerHTML += 'lat: ' + coord[0] + '<br>';
                     //div.innerHTML += 'lng: ' + coord[1] + '<br><br>';
-                    poligonosAreas[i] = { lat: coord[0], lng: coord[1] };
+                    poligonosAreas.push({ lat: coord[0], lng: coord[1] });
+                    if (i == 5) break;
                 }
 
+                //poligonosAreas[poligonosAreas.length] = poligonosAreas[0]; 
 
-
+                var triangleCoords = [];
+                triangleCoords.push({ lat: 25.774555564564655, lng: -80.1905555555555 });
+                triangleCoords.push({ lat: 18.466545656465655, lng: -66.1185445454555 });
+                triangleCoords.push({ lat: 32.321555555555555, lng: -64.7575555555555 });
+                //triangleCoords.push({ lat: 25.774555564564655, lng: -80.1905555555555 });
                 var bermudaTriangle = new google.maps.Polygon({
                     paths: poligonosAreas,
                     strokeColor: '#FF0000',
