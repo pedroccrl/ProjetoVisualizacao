@@ -37,7 +37,6 @@
         consumer
         .query()
         .withDataset('igwz-8jzy')
-        .limit(5)
         .getRows()
         .on('success', function (rows) {
             map = new google.maps.Map(document.getElementById('map'), {
@@ -54,8 +53,7 @@
                     var coord = coords[i];
                     //div.innerHTML += 'lat: ' + coord[0] + '<br>';
                     //div.innerHTML += 'lng: ' + coord[1] + '<br><br>';
-                    poligonosAreas.push({ lat: coord[0], lng: coord[1] });
-                    if (i == 5) break;
+                    poligonosAreas.push({ lat: coord[1], lng: coord[0] });
                 }
 
                 //poligonosAreas[poligonosAreas.length] = poligonosAreas[0]; 
@@ -70,10 +68,10 @@
                     strokeColor: '#FF0000',
                     strokeOpacity: 0.8,
                     strokeWeight: 3,
-                    fillColor: '#FF0000',
+                    fillColor: getRandomColor(),
                     fillOpacity: 0.35
                 });
-
+                
                 bermudaTriangle.setMap(map);
                 bermudaTriangle.addListener('click', showArrays);
                 infoWindow = new google.maps.InfoWindow;
@@ -82,6 +80,15 @@
             
         })
         .on('error', function (error) { console.error(error); });
+    }
+
+    function getRandomColor() {
+        var letters = '0123456789ABCDEF'.split('');
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
     }
 
     /** @this {google.maps.Polygon} */

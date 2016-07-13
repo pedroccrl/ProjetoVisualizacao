@@ -81,7 +81,9 @@
                 mapTypeId: google.maps.MapTypeId.SATELLITE
             });
 
-            
+            map.addListener('click', function (event) {
+
+            });
 
         }
         function crimesChicago() {
@@ -105,7 +107,7 @@
                     }
 
                     // Load GeoJSON.
-                    map.data.loadGeoJson('https://data.cityofchicago.org/api/geospatial/cauq-8yn6?method=export&format=GeoJSON');
+                    //map.data.loadGeoJson('https://data.cityofchicago.org/api/geospatial/cauq-8yn6?method=export&format=GeoJSON');
 
                     // [START snippet]
                     // Color each letter gray. Change the color when the isColorful property
@@ -122,10 +124,7 @@
                         });
                     });
 
-                    // When the user clicks, set 'isColorful', changing the color of the letters.
-                    map.data.addListener('click', function (event) {
-                        event.feature.setProperty('isColorful', true);
-                    });
+                    
 
                     // When the user hovers, tempt them to click by outlining the letters.
                     // Call revertStyle() to remove all overrides. This will use the style rules
