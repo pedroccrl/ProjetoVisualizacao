@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Socrata - Visualização</title>
+    <meta charset="utf-8" />
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            height: 100%;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="map"></div>
+    <div id="teste"></div>
+
+</body>
+</html>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9UfBAMHF2QhemIgsbX52OtYs8yslpsZ8&signed_in=true&callback=initMap"></script>
+<script>
+    function initMap() {
+        var myLatLng = { lat: -25.363, lng: 131.044 };
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 4,
+            center: myLatLng
+        });
+
+        var marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            title: 'Hello World!'
+        });
+    }
+</script>

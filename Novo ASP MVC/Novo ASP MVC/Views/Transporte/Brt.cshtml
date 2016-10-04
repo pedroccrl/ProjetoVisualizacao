@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "Brt";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Brt</h2>
+
+<div ng-app="brtApp" ng-controller="brtController">
+    <div class="maps">
+        <!-- Add directive code (gmap directive) for show map and markers-->
+        <ui-gmap-google-map center="map.center" zoom="map.zoom">
+            <ui-gmap-marker ng-repeat="marker in markers" coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">
+                <div style="max-width:200px">
+                    <div class="header"><strong>{{marker.Codigo}}</strong></div>
+                    <div id="mapcontent">
+                        <p>
+                            <img ng-src="{{marker.image}}" style="width:200px; height:100px" />
+                            <div>{{marker.vel}}</div>
+                        </p>
+                    </div>
+                </div>
+            </ui-gmap-marker>
+        </ui-gmap-google-map>
+    </div>
+</div>
+<div class="locations">
+    <ul>
+        <li ng-repeat="l in locations" ng-click="ShowLocation(l.LocationID)">{{l.Title}}</li>
+    </ul>
+</div>
+
+@* Now here we need to some css and js *@
+<style>
+    .angular-google-map-container {
+        height: 600px;
+    }
+
+    .angular-google-map {
+        width: 80%;
+        height: 100%;
+        margin: auto 0px;
+    }
+
+</style>
+@* AngularJS library *@
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular.js"></script>
+
+@* google map directive js *@
+<script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.js"></script>
+<script src="//rawgit.com/angular-ui/angular-google-maps/2.0.X/dist/angular-google-maps.js"></script>
+
+@* here We will add our created js file *@
+<script src="~/Scripts/brtController.js"></script>
