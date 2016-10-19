@@ -4,32 +4,38 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Brt</h2>
 
-<div ng-app="brtApp" ng-controller="brtController">
-    <div class="maps">
-        <!-- Add directive code (gmap directive) for show map and markers-->
-        <ui-gmap-google-map center="map.center" zoom="map.zoom">
-            <ui-gmap-marker ng-repeat="marker in markers" coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">
-                <div style="max-width:200px">
-                    <div class="header"><strong>{{marker.Codigo}}</strong></div>
-                    <div id="mapcontent">
-                        <p>
-                            <img ng-src="{{marker.image}}" style="width:200px; height:100px" />
-                            <div>{{marker.vel}}</div>
-                        </p>
-                    </div>
-                </div>
-            </ui-gmap-marker>
-        </ui-gmap-google-map>
+<div class="container" ng-app="brtApp" ng-controller="brtController">
+    <h2>BRT</h2>
+    <h4>Conjuntos de dados relacionados ao serviço de tempo real que informa as posições dos veículos pertencentes ao sistema BRT, incluindo linhas alimentadoras. </h4>
+    <div class="progress" style="width: {{loading}}%">
+        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: {{loading}}%">
+            <span class="sr-only">45% Complete</span>
+        </div>
     </div>
+    <div class="col-lg-2">
+        <h5>Clique nas linhas para ver os onibus</h5>
+        <ul>
+            <li ng-repeat="marker in markers" ng-if="marker.Linha != '0'" ng-click="SelLinha(marker.Linha)">{{marker.Linha}}</li>
+        </ul>
+    </div>
+    <div class="col-lg-10">
+        <div class="maps">
+            <!-- Add directive code (gmap directive) for show map and markers-->
+            <ui-gmap-google-map center="map.center" zoom="map.zoom">
+                <ui-gmap-marker ng-repeat="marker in markers" coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.Codigo">
+                    <ui-gmap-window>
+                        <div>
+                            <h4>Linha: {{marker.Codigo}}</h4>
+                            <h5>{{marker.Velocidade}} km/h</h5>
+                        </div>
+                    </ui-gmap-window>
+                </ui-gmap-marker>
+            </ui-gmap-google-map>
+        </div>
+    </div>
+    
 </div>
-<div class="locations">
-    <ul>
-        <li ng-repeat="l in locations" ng-click="ShowLocation(l.LocationID)">{{l.Title}}</li>
-    </ul>
-</div>
-
 @* Now here we need to some css and js *@
 <style>
     .angular-google-map-container {
@@ -37,7 +43,7 @@
     }
 
     .angular-google-map {
-        width: 80%;
+        width: 100%;
         height: 100%;
         margin: auto 0px;
     }
@@ -45,7 +51,7 @@
 </style>
 @* AngularJS library *@
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
 
 @* google map directive js *@
 <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.js"></script>

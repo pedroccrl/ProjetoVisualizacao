@@ -22,6 +22,7 @@ namespace Novo_ASP_MVC.Controllers.Transporte
             var vs = JsonConvert.DeserializeObject<BrtVeiculos>(json);
             foreach (var item in vs.veiculos)
             {
+                if (veiculos.Find(v=>v.Linha==item.linha.ToString())==null) // Adicionar apenas linhas unicas
                 veiculos.Add(new Veiculo
                 {
                     Codigo = item.codigo,
@@ -36,9 +37,27 @@ namespace Novo_ASP_MVC.Controllers.Transporte
         }
 
         // GET: api/Brt/5
-        public string Get(int id)
+        public async Task<IEnumerable<Veiculo>> Get(string id)
         {
-            return "value";
+            var veiculos = new List<Veiculo>();
+            HttpClient client = new HttpClient();
+            var r = await client.GetAsync("http://webapibrt.rio.rj.gov.br/api/v1/brt");
+            var json = await r.Content.ReadAsStringAsync();
+            var vs = JsonConvert.DeserializeObject<BrtVeiculos>(json);
+            foreach (var item in vs.veiculos)
+            {
+                if (item.linha.ToString() != id.ToString()) continue;
+                veiculos.Add(new Veiculo
+                {
+                    Codigo = item.codigo,
+                    Linha = item.linha.ToString(),
+                    Latitude = item.latitude,
+                    Longitude = item.longitude,
+                    DataHora = item.datahora.ToString(),
+                    Velocidade = item.velocidade.ToString()
+                });
+            }
+            return veiculos;
         }
 
         // POST: api/Brt

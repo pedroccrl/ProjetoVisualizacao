@@ -1,41 +1,45 @@
 ﻿var app = angular.module('brtApp', ['uiGmapgoogle-maps']);
-app.controller('brtController', function ($scope, $http) {
+app.controller('brtController', function ($scope, $http, $interval) {
 
     //this is for default map focus when load first time
-    $scope.map = { center: { latitude: 22.590406, longitude: 88.366034 }, zoom: 16 }
+    $scope.map = { center: { latitude: -22.9191118, longitude: -43.3505867 }, zoom: 12 }
 
     $scope.markers = [];
     $scope.locations = [];
+    $scope.loading = "100";
+    $scope.urlApi = '/api/brt';
 
-
-    $http.get('/api/brt')
+    var att;
+    att = $interval(function myfunction() {
+        $http.get($scope.urlApi)
         .then(function (data) {
+
             //clear markers 
             $scope.markers = [];
             for (var i = 0; i < data.data.length; i++) {
-    
+
                 var v = data.data[i];
                 $scope.markers.push({
-                    id: v.Codigo,
+                    Codigo: v.Codigo,
                     coords: { latitude: v.Latitude, longitude: v.Longitude },
-                    title: v.Linha,
-                    vel: data.data.Velocidade,
+                    Linha: v.Linha,
+                    Velocidade: v.Velocidade,
                     //image: data.data.ImagePath
                 });
             }
-            console.log($scope.markers);
 
             //set map focus to center
-            $scope.map.center.latitude = data.data[0].Latitude;
-            $scope.map.center.longitude = data.data[0].Longitude;
+            //$scope.map.center.latitude = data.data[0].Latitude;
+            //$scope.map.center.longitude = data.data[0].Longitude;
+            $scope.loading = "0";
+        }, function () {
+            alert('Error');
+        });
+    }, 10000);
 
-    }, function () {
-        alert('Error');
-    });
-
-
-    $scope.ShowLocation = function (Codigo) {
-        alert('Oi');
+    $scope.SelLinha = function (linha) {
+        $scope.urlApi = '/api/brt/' + linha;
+        $scope.loading = 100;
     }
 
     //Show / Hide marker on map
@@ -52,3 +56,7 @@ app.config(function(uiGmapGoogleMapApiProvider) {
         libraries: 'weather,geometry,visualization'
     });
 })
+
+function atualiza(http) {
+
+}
