@@ -19,7 +19,7 @@ namespace Novo_ASP_MVC.Controllers.Transporte
             HttpClient client = new HttpClient();
             var r = await client.GetAsync("http://webapibrt.rio.rj.gov.br/api/v1/brt");
             var json = await r.Content.ReadAsStringAsync();
-            var vs = JsonConvert.DeserializeObject<BrtVeiculos>(json);
+            var vs = JsonConvert.DeserializeObject<Models.Provider.DataRio.BrtVeiculos>(json);
             foreach (var item in vs.veiculos)
             {
                 if (veiculos.Find(v=>v.Linha==item.linha.ToString())==null) // Adicionar apenas linhas unicas
@@ -43,7 +43,7 @@ namespace Novo_ASP_MVC.Controllers.Transporte
             HttpClient client = new HttpClient();
             var r = await client.GetAsync("http://webapibrt.rio.rj.gov.br/api/v1/brt");
             var json = await r.Content.ReadAsStringAsync();
-            var vs = JsonConvert.DeserializeObject<BrtVeiculos>(json);
+            var vs = JsonConvert.DeserializeObject<Models.Provider.DataRio.BrtVeiculos>(json);
             foreach (var item in vs.veiculos)
             {
                 if (item.linha.ToString() != id.ToString()) continue;
@@ -77,19 +77,6 @@ namespace Novo_ASP_MVC.Controllers.Transporte
     }
 
 
-    public class BrtVeiculos
-    {
-        public BrtVeiculo[] veiculos { get; set; }
-    }
-
-    public class BrtVeiculo
-    {
-        public string codigo { get; set; }
-        public object linha { get; set; }
-        public float latitude { get; set; }
-        public float longitude { get; set; }
-        public long datahora { get; set; }
-        public float velocidade { get; set; }
-    }
+    
 
 }

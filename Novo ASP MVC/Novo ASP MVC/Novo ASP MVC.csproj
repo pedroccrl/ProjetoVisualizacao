@@ -185,15 +185,20 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\TesteController.cs" />
-    <Compile Include="Controllers\Transporte\BrtController.cs" />
+    <Compile Include="Controllers\Transporte\Brt\BrtController.cs" />
+    <Compile Include="Controllers\Transporte\Onibus\LinhaOnibusController.cs" />
     <Compile Include="Controllers\Transporte\TransporteController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Coordenada.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Linha.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Produto.cs" />
+    <Compile Include="Models\Provider\DataRio\BrtVeiculo.cs" />
+    <Compile Include="Models\Provider\DataRio\LinhaOnibus.cs" />
     <Compile Include="Models\Veiculo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -218,6 +223,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Models\Provider\leia-me.txt" />
     <Content Include="Scripts\angular-google-maps-street-view.js" />
     <Content Include="Scripts\angular-google-maps-street-view.min.js" />
     <Content Include="Scripts\angular-google-maps.js" />
@@ -226,6 +232,7 @@
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\angular.min.js.map" />
+    <Content Include="App_Data\data.rio\onibus\gtfs_linha377-shapes.csv" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -239,6 +246,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\linhaOnibusController.js" />
     <Content Include="Scripts\lodash.js" />
     <Content Include="Scripts\lodash.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
@@ -283,9 +291,10 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Map.cshtml" />
     <Content Include="Views\Transporte\Brt.cshtml" />
+    <Content Include="Views\Transporte\LinhaOnibus.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="Views\Linha\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

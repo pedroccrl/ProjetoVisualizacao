@@ -18,5 +18,10 @@ namespace Novo_ASP_MVC.Controllers.Transporte
         {
             return View();
         }
+
+        public ActionResult LinhaOnibus()
+        {
+            return View();
+        }
     }
 }

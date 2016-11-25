@@ -1,0 +1,1 @@
+﻿Esta pasta contem as classes que são usadas na hora de fazer o parse (conversão) dos DataSet dos provedores de dados abertos.

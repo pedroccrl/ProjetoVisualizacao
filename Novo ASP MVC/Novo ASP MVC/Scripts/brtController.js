@@ -8,7 +8,7 @@ app.controller('brtController', function ($scope, $http, $interval) {
     $scope.locations = [];
     $scope.loading = "100";
     $scope.urlApi = '/api/brt';
-
+    
     var att;
     att = $interval(function myfunction() {
         $http.get($scope.urlApi)
@@ -46,6 +46,7 @@ app.controller('brtController', function ($scope, $http, $interval) {
     $scope.windowOptions = {
         show: true
     };
+    
 
 });
 
