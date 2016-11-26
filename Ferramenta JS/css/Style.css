@@ -1,0 +1,17 @@
+﻿body{
+    padding-top:10px;
+}
+.row{
+    padding:3px;
+}
+.panel{
+    border-color: lightgrey; 
+}
+.ddList{
+    min-width:100px;
+}
+#map {
+	float: right;
+	height: 500px;
+	
+}
