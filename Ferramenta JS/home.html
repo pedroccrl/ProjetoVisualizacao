@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Visualização de dados</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+
+    <link href="css/Style.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+    <nav class="navbar navbar-default">
+        <a class="navbar-brand" href="#">Ferramenta</a>
+        <a class="navbar-brand" href="#">Exemplos</a>
+    </nav>        
+        <div class="panel col-md-6">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6"><label>Endereço:</label></div>
+                    <div class="col-md-6"><input type="text" id="domain" class="form-control"/></div> 
+                </div> 
+                <div class="row">
+                    <div class="col-md-6"><label>Dataset Geográfico:</label> </div> 
+                    <div class="col-md-6"><input type="text" id="ds_geo" class="form-control" /> </div> 
+                </div>
+                <div class="row">
+                        <div class="col-md-6"><label>Dataset de Dados:</label> </div> 
+                        <div class="col-md-6"><input type="text" id="ds_dados" class="form-control"/> </div> 
+               </div>
+                <div class="row">
+                    <div class=col-md-1><button id="btn_acesso" class="btn btn-primary">Acessar Datasets</button></div>
+                </div>
+
+            </div>        
+        </div>
+        <div id="map" class="col-md-6"></div>
+        <div class="panel col-md-6">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6"><label>Identificador Das Áreas:</label></div>
+                    <div class="col-md-6">
+                        <select id="select_areas" class="form-control">
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                        <div class="col-md-6"><label>Posição Geográfico:</label> </div> 
+                        <div class="col-md-6">
+                            <select id="select_dados" class="form-control">
+                            </select>
+                        </div>
+                </div>
+                <div class="row">
+                    <div class=col-md-1><button id="btn_visualizacao" class="btn btn-primary">Gerar Visualização</button></div>
+                </div>
+            </div>        
+        </div>
+
+    </div>
+    <script src="Scripts/jquery-1.9.1.js"></script>
+    <script src="Scripts/apisocrata.js"></script>
+    <script src="Scripts/soda-js.bundle.js"></script>
+    <script src="Scripts/desenhaChicago.js"></script>
+    <script src="Scripts/teste.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9UfBAMHF2QhemIgsbX52OtYs8yslpsZ8&callback=initMap"></script>
+</body>
+
+</html>
+
