@@ -1,0 +1,51 @@
+﻿@model List<Novo_ASP_MVC.Models.Dataset>
+
+@{
+    ViewBag.Title = "Index";
+    ViewBag.UltimaVisita = @Request.Cookies["info"]["ultimaVisita"];
+}
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>  
+<h2>Datasets</h2>
+<div>
+    <h4>Ultimo Login: @ViewBag.UltimaVisita</ h4 >
+    <hr />
+    <dl class="dl-horizontal">
+        @foreach (var m in Model)
+        {
+        <dt>
+            @Html.DisplayNameFor(model => m.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => m.Nome)
+        </dd>
+        
+        <dt>
+            @Html.DisplayNameFor(model => m.Dominio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => m.Dominio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => m.ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => m.ID)
+        </dd>
+
+        <dt>
+            <label>Ações</label>
+        </dt>
+
+        <dd>
+            @Html.ActionLink("Remover", "Deletar", "Perfil", m, new { @class = "btn btn-info" })
+            @Html.ActionLink("Para Ferramenta", "ChamaFerramenta", "Perfil", m, new { @class = "btn btn-info" })
+        </dd>
+        <hr />
+        }
+        <input type="button" class="btn btn-info" value="Adicionar" onclick="location.href='@Url.Action("Adicionar", "Perfil")'"/>
+    </dl>
+</div>

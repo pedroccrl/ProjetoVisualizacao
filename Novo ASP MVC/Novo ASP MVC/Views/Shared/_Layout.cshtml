@@ -1,44 +1,41 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    <sessionState mode="Off" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/Style.css")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
 <body ng->
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Dados Abertos e Visualização", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    @*<li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
+    @if(@Request.Cookies.Get("info") == null)
+    {
+        @Html.Partial("NavBarOff")
+    }
+    else
+    { 
+        @Html.Partial("NavBarOn")
+    }
+    <div class="container">
+        
+        <div class="container body-content">
+            @RenderBody()
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
         <hr />
         <footer>
+            <p>Victor Santos</p>
+            <p>Pedro Câmara</p>
             <p>&copy; @DateTime.Now.Year</p>
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    
     @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Sair";
+}
+
+<div class="panel panel-default col-md-offset-4 col-md-4" style="padding: 0px;">
+    <div class="panel-heading">
+        <label class="panel-title">Olá, @ViewBag.User</label>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <label class="control-label" style="border-left:10px; border-bottom:10px;">Deseja sair?</label>
+        </div>
+        <div class="col-md-5">
+            <input type="button" value="Sim" onclick="location.href='@Url.Action("Logoff", "Login")'" class="btn btn-primary btn-block" />
+        </div>
+        <div class="col-md-offset-2 col-md-5">
+            <input type="button" value="Não" onclick="location.href='@Url.Action("Home", "Ferramenta")'" class="btn btn-primary btn-block" />
+        </div>
+    </div>
+</div>
