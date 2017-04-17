@@ -8,6 +8,7 @@ function loadDataInDiv(divId,criterio) {
     var table = document.getElementById(divId);     
     var criterioAlterado = camelCase(criterio);
     changeMap(criterio);
+    
     xhttp.onreadystatechange = function () {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
             document.getElementById(divId).innerHTML = '<tr><th>Area</th><th>'+criterioAlterado+'</th></tr>';
