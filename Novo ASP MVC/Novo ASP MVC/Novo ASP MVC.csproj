@@ -48,6 +48,10 @@
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.4.9.5, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.9.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AspNetCore.Antiforgery, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNetCore.Antiforgery.1.1.1\lib\net451\Microsoft.AspNetCore.Antiforgery.dll</HintPath>
       <Private>True</Private>
@@ -445,10 +449,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\Api\CKAN\BuscaController.cs" />
     <Compile Include="Controllers\Api\Rio\Transporte\BrtGeoJSONController.cs" />
     <Compile Include="Controllers\Api\Rio\Transporte\OnibusGeoJSONController.cs" />
     <Compile Include="Controllers\Api\Rio\Saude\EstabelecimentoController.cs" />
     <Compile Include="Controllers\Api\ViewsController.cs" />
+    <Compile Include="Controllers\Default1Controller.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\DocumentacaoController.cs" />
     <Compile Include="Controllers\FerramentaController.cs" />
