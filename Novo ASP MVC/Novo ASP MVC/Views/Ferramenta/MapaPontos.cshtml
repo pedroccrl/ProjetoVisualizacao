@@ -1,0 +1,95 @@
+﻿
+@{
+    ViewBag.Title = "Mapa de Pontos";
+}
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<div class="panel panel-default col-md-6" style="padding: 0px;">
+    <div class="panel-heading">
+        <label class="panel-title">Dataset</label>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-6"><label>Endereço:</label></div>
+            <div class="col-md-6"><input type="text" id="domain" class="form-control" value="@(ViewBag.dominio)" /></div>
+        </div>
+        <div class="row">
+            <div class="col-md-6"><label>API:</label> </div>
+            <div class="col-md-6">
+                <select id="select_api" class="form-control">
+                    <option value="Socrata">Socrata</option>
+                    <option value="CKAN">CKAN</option>
+                </select> 
+            </div>
+        </div>
+        <div class="row">
+            <div class=col-md-1><button id="btn_dataset" class="btn btn-primary">Acessar Dataset</button></div>
+        </div>
+    </div>
+</div>
+
+<div id="map" class="col-md-6"></div>
+
+
+<div class="panel panel-default col-md-6" style="padding: 0px;">
+    <div class="panel-heading">
+        <label class="panel-title">Coordenadas Geográficas</label>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-6"><label>Nome do dataset:</label></div>
+            <div class="col-md-6"><label id="lb_nome_dataset"></label></div>
+        </div>
+        <div class="row">
+            <div class="col-md-6"><label>Localização:</label></div>
+            <div class="col-md-6">
+                <select id="select_loc" class="form-control"></select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6"><label>Inverter Lat e Long:</label></div>
+            <div class="col-md-6"><input type="checkbox" id="cb_inverter"></input></div>
+        </div>
+        <div class="row">
+            <div class=col-md-1><button id="btn_select" class="btn btn-primary">Gerar Visualização</button></div>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-default col-md-6" style="padding: 0px;">
+    <div class="panel-heading">
+        <label class="panel-title">Instruções</label>
+    </div>
+    <div class="panel-body">
+        <label>
+        </label>
+        <label>
+        </label>
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div class="row">
+        <div class="col-md-9">
+            <label class="label label-warning">
+                A ferramenta pode demorar a gerar o mapa se o dataset for muito grande
+            </label>
+        </div>
+        <div class="col-md-1">
+            <button id="btn_export" class="btn btn-primary">Exportar Mapa</button>
+        </div>
+    </div>
+    <label id="avisos" class="label label-warning"></label>
+    <label id="rows_contador" class="label label-warning"></label>
+</div>
+
+<script src="~/Scripts/jquery-3.1.1.js"></script>
+<script type="text/javascript" src="/js/jquery.ui.map.overlays.js"></script>
+<script type="text/javascript" src="/js/jquery.ui.map.extensions.js"></script>
+<script src="~/Scripts/Ferramenta/soda-js.bundle.js"></script>
+<script src="~/Scripts/Ferramenta/funcoes-mapa-pontos-teste.js"></script>
+<script src="~/Scripts/FileSaver/FileSaver.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9UfBAMHF2QhemIgsbX52OtYs8yslpsZ8&libraries=visualization&callback=initMap"></script>

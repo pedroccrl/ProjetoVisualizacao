@@ -1,9 +1,13 @@
+//botıes
 var btn_acesso = document.getElementById('btn_acesso');
 var btn_visualizacao = document.getElementById('btn_visualizacao');
+//inputs
 var domain = document.getElementById('domain');
 var ds_geo = document.getElementById('ds_geo');
 var ds_dados = document.getElementById('ds_dados');
-var avisos = document.getElementById('avisos');            
+//label
+var avisos = document.getElementById('avisos');
+//dropdown list
 var select_dados = document.getElementById('select_dados');
 var select_geo = document.getElementById('select_geo');
 
@@ -55,7 +59,8 @@ btn_acesso.addEventListener("click", function(e){
         })
         .on('error', function(error){
             console.log(error);
-            alert("Dataset geogr·fico inv√°lido");
+            avisos.innerHTML = "Dataset geogr·fico inv√°lido";
+            return false;
         });
     //Testa para saber se existe dataset preenchedio
     if(ds_dados.value.length < 9){ 
@@ -106,4 +111,13 @@ function preencheSelect(dataset, select){
     };
     request.open("GET", url, true);
     request.send();
+}
+
+function initMap() {
+    //Inicializa o mapa na div 'map'.
+    map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 10,
+        center: { lat: 41.84173095, lng: -87.67467499 },
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
 }
