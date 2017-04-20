@@ -1,0 +1,72 @@
+﻿content_copy
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Layer: Dynamic Styling</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script>
+
+var map;
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 10,
+    center: { lat: 41.885, lng: -87.663 },
+  });
+
+  // Load GeoJSON.
+  map.data.loadGeoJson('http://appediu.com.br/uff/Municipios_MG.geojson');
+
+  // [START snippet]
+  // Color each letter gray. Change the color when the isColorful property
+  // is set to true.
+  map.data.setStyle(function(feature) {
+    var color = 'gray';
+    if (feature.getProperty('isColorful')) {
+      color = feature.getProperty('color');
+    }
+    return /** @type {google.maps.Data.StyleOptions} */({
+      fillColor: color,
+      strokeColor: color,
+      strokeWeight: 2
+    });
+  });
+
+  // When the user clicks, set 'isColorful', changing the color of the letters.
+  map.data.addListener('click', function(event) {
+    event.feature.setProperty('isColorful', true);
+  });
+
+  // When the user hovers, tempt them to click by outlining the letters.
+  // Call revertStyle() to remove all overrides. This will use the style rules
+  // defined in the function passed to setStyle()
+  map.data.addListener('mouseover', function(event) {
+    map.data.revertStyle();
+    map.data.overrideStyle(event.feature, {strokeWeight: 8});
+  });
+
+  map.data.addListener('mouseout', function(event) {
+    map.data.revertStyle();
+  });
+  // [END snippet]
+}
+
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9UfBAMHF2QhemIgsbX52OtYs8yslpsZ8&signed_in=true&callback=initMap"></script>
+</body>
+</html>

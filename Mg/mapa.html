@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <title>KML Layers</title>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+
+function initMap() {
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 11,
+    center: {lat: 41.876, lng: -87.624}
+  });
+
+//   var ctaLayer = new google.maps.KmlLayer({
+//     url: 'https://data.cityofchicago.org/api/geospatial/cauq-8yn6?method=export&format=KML',
+//     map: map //isso seta em qual mapa a camada deve ser desenhada.
+//   });
+  
+  
+  var myParser = new geoXML3.parser({map: map});
+  myParser.parse('chicago.kml');
+  
+//   console.log(myParser);
+}
+function readKml(fileName) {
+    var http = new XMLHttpRequest();
+    http.onreadystatechange = function(){
+        if (http.readyState == 4 && http.status == 200) {
+            var parser = new DOMParser();
+            var xmlDoc = parser.parseFromString(http.responseText, "text/xml");
+            console.log(xmlDoc);
+        }
+    }
+    http.open("GET", "chicago.kml", true);
+    http.send();
+}
+
+
+readKml("chicago.kml");
+    </script>
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCnODLfykrXkdSxD3mzMPRnoopeqDoni5I&callback=initMap" async defer></script>
+    <script src="Scripts/geoxml3.js"></script>
+    <script src="Scripts/apisocrata.js"></script>
+  </body>
+</html>
