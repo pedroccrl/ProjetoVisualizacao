@@ -34,6 +34,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <FilesToIncludeForPublish>AllFilesInTheProject</FilesToIncludeForPublish>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -516,11 +517,27 @@
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\angular.min.js.map" />
-    <Content Include="App_Data\data.rio\onibus\gtfs_linha136-paradas.csv" />
-    <None Include="Properties\PublishProfiles\open-dv-uff - Web Deploy.pubxml" />
+	 <Content Include="App_Data\data.rio\onibus\gtfs_linha377-shapes.csv" />
+    <Content Include="Scripts\Ferramenta\funcoes-mapa-calor-teste.js" />
+    <Content Include="Scripts\Ferramenta\funcoes-mapa-junto.js" />
+    <Content Include="Scripts\Ferramenta\funcoes-mapa-pontos-teste.js" />
+    <Content Include="Scripts\Ferramenta\funcoes-mapa-pontos.js" />
+    <Content Include="Scripts\FileSaver\bower.json" />
+    <Content Include="Scripts\FileSaver\demo\index.xhtml" />
+    <Content Include="Scripts\FileSaver\LICENSE.md" />
+    <Content Include="Scripts\FileSaver\package.json" />
+    <Content Include="Scripts\FileSaver\README.md" />
+    <Content Include="App_Data\data.rio\onibus\gtfs_linha377-shapes.csv" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Ferramenta\funcoes-area.js" />
+    <Content Include="Scripts\Ferramenta\funcoes-mapa-calor.js" />
+    <Content Include="Scripts\FileSaver\demo\demo.css" />
+    <Content Include="Scripts\FileSaver\demo\demo.js" />
+    <Content Include="Scripts\FileSaver\demo\demo.min.js" />
+    <Content Include="Scripts\FileSaver\FileSaver.js" />
+    <Content Include="Scripts\FileSaver\FileSaver.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\JsonColumn.js" />
@@ -531,8 +548,6 @@
     <Content Include="Scripts\Ferramenta\ProjectedOverlay.js" />
     <Content Include="Scripts\Ferramenta\socrata-helper.js" />
     <Content Include="Scripts\Ferramenta\soda-js.bundle.js" />
-    <Content Include="Scripts\Ferramenta\teste.js" />
-    <Content Include="Scripts\Ferramenta\visual.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.js" />
@@ -565,7 +580,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Transporte\Brt.cshtml" />
     <Content Include="Views\Transporte\LinhaOnibus.cshtml" />
-    <Content Include="Views\Ferramenta\Home.cshtml" />
+    <Content Include="Views\Ferramenta\MapaArea.cshtml" />
     <Content Include="Views\Documentacao\Index.cshtml" />
     <Content Include="Views\Login\Cadastrar.cshtml" />
     <Content Include="Views\Login\Entrar.cshtml" />
@@ -574,10 +589,16 @@
     <Content Include="Views\Shared\NavBarOn.cshtml" />
     <Content Include="Views\Perfil\Index.cshtml" />
     <Content Include="Views\Perfil\Adicionar.cshtml" />
+    <Content Include="Views\Ferramenta\MapaCalor.cshtml" />
+    <Content Include="Views\Ferramenta\MapaPontos.cshtml" />
+    <Content Include="Views\Ferramenta\MapaJuntos.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Estabelecimento\" />
+    <Folder Include="Views\MapaCalor\" />
     <Folder Include="Views\OnibusGeoJSON\" />
     <Folder Include="Views\Views\" />
   </ItemGroup>

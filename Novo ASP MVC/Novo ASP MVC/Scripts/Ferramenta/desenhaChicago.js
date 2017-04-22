@@ -2,15 +2,6 @@ var token = 'Gqi5A6FBGKP1Sn7PZeJPw7mAR';
 var consumer = new soda.Consumer('data.cityofchicago.org');
 var consumerColor = new soda.Consumer('data.cityofchicago.org');
 
-function initMap() {
-    //Inicializa o mapa na div 'map'.
-    map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 10,
-        center: { lat: 41.84173095, lng: -87.67467499},
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-    });
-}
-
 function changeMap(criterio) {
     //Primeiro ele acessa para pegar o nome e a renda do local.
     //Repare que a função chamada aqui é assincrona.

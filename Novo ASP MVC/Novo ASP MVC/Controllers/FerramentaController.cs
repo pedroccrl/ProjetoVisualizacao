@@ -10,13 +10,8 @@ namespace Novo_ASP_MVC.Controllers.Ferramenta
     public class FerramentaController : Controller
     {
         // GET: Ferramenta
-/*        public ActionResult Home()
-        {
-            ViewBag.dominio = "get";
-            return View();
-        }
-        */
-        public ActionResult Home(Dataset d)
+
+        public ActionResult MapaArea(Dataset d)
         {
             if(d != null)
             {
@@ -25,7 +20,18 @@ namespace Novo_ASP_MVC.Controllers.Ferramenta
             }
             return View();
         }
-        
+        public ActionResult MapaCalor()
+        {
 
+            return View();
+        }
+        public ActionResult MapaPontos()
+        {
+            return View();
+        }
+        public ActionResult MapaJuntos()
+        {
+            return View();
+        }
     }
 }
