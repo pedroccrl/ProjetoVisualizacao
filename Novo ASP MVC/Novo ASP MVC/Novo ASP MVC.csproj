@@ -516,7 +516,8 @@
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\angular.min.js.map" />
-    <Content Include="App_Data\data.rio\onibus\gtfs_linha377-shapes.csv" />
+    <Content Include="App_Data\data.rio\onibus\gtfs_linha136-paradas.csv" />
+    <None Include="Properties\PublishProfiles\open-dv-uff - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

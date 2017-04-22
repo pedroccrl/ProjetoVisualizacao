@@ -25,10 +25,14 @@ namespace Novo_ASP_MVC.Controllers.Api.CKAN
 
             List<Filtro> filtros = new List<Filtro>();
 
-            foreach (var section in htmlDoc.DocumentNode.SelectNodes("//div[@class='filters']/div/section"))
+            foreach (var section in htmlDoc.DocumentNode.SelectNodes("//section[@class='module module-narrow module-shallow']"))
             {
                 var tipo = section.ChildNodes.FindFirst("h2").InnerText.Trim();
-
+                if (tipo.Contains('\n'))
+                {
+                    var p = tipo.IndexOf('\n');
+                    tipo = tipo.Remove(p, tipo.Length - p);
+                }
                 var secoes = new List<Secao>();
 
                 var sectionDoc = new HtmlDocument();
