@@ -519,6 +519,7 @@
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="App_Data\data.rio\onibus\gtfs_linha377-shapes.csv" />
     <Content Include="Scripts\Ferramenta\funcoes-mapa-calor-teste.js" />
+    <Content Include="Scripts\Ferramenta\funcoes-mapa-junto.js" />
     <Content Include="Scripts\Ferramenta\funcoes-mapa-pontos-teste.js" />
     <Content Include="Scripts\Ferramenta\funcoes-mapa-pontos.js" />
     <Content Include="Scripts\FileSaver\bower.json" />
@@ -590,13 +591,14 @@
     <Content Include="Views\Perfil\Adicionar.cshtml" />
     <Content Include="Views\Ferramenta\MapaCalor.cshtml" />
     <Content Include="Views\Ferramenta\MapaPontos.cshtml" />
+    <Content Include="Views\Ferramenta\MapaJuntos.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\MapaCalor\" />
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Estabelecimento\" />
+    <Folder Include="Views\MapaCalor\" />
     <Folder Include="Views\OnibusGeoJSON\" />
     <Folder Include="Views\Views\" />
   </ItemGroup>

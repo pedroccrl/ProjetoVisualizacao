@@ -29,6 +29,9 @@ namespace Novo_ASP_MVC.Controllers.Ferramenta
         {
             return View();
         }
-
+        public ActionResult MapaJuntos()
+        {
+            return View();
+        }
     }
 }
